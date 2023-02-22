@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Home from './components/pages/Home'
+import About from "./components/pages/About"
+import Contact from "./components/pages/Contact"
+import Cart from "./components/pages/Cart"
+import { useState } from "react";
+
 
 function App() {
+  const [cart, setCart] = useState(10)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+    <Header />
+    <Routes>
+      <Route path="/" element={<Home cart={cart} setCart={setCart}/>}/>
+      <Route path="/About" element={<About />}/>
+      <Route path="/contact" element={<Contact />}/>
+      <Route path="/Cart" element={<Cart cart={cart} setCart ={setCart} />}/>
+    </Routes>
     </div>
   );
 }
